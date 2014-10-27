@@ -1,0 +1,12 @@
+html, body{padding-top: 0 !important; background: #F1F1F1;}
+
+#adminmenuback,
+#adminmenuwrap,
+#wpfooter,
+#wpadminbar{display: none;}
+
+body *{position: static; }
+body #wpcontent{padding: 0; margin: 0; }
+body #wpbody-content{padding: 0;}
+
+#vsFlickrFrame{z-index:199999;}

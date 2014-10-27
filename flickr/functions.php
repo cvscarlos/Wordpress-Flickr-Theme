@@ -46,5 +46,5 @@ add_action( 'init', 'custom_taxonomy', 0 );
 
 
 
-
-require get_template_directory() . '/admin/admin-functions.php';
+if ( is_admin() )
+	include_once get_template_directory() . '/admin/admin-functions.php';

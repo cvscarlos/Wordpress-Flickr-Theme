@@ -1,46 +1,48 @@
 <?php
-function setup_theme_admin_menus() {
-	add_menu_page('Theme settings', 'Example theme', 'manage_options', 
-		'tut_theme_settings', 'theme_settings_page', 'http://web-hub.net/wiki/skins/largepublisher/config16.png');
+include_once get_template_directory() . "/helpers/rain.tpl.class.php";
+raintpl::configure("tpl_dir", get_template_directory() . "/tpl/admin/");
+raintpl::configure("cache_dir", get_template_directory() . "/tmp/");
+raintpl::configure( 'path_replace', false );
 
-	add_submenu_page('tut_theme_settings', 
-		'Front Page Elements', 'Front Page', 'manage_options', 
-		'tut_theme_settings', 'theme_front_page_settings'); 
+function setup_theme_admin_menus() {
+	add_menu_page('Flickr Theme Config', 'Flickr Config', 'manage_options', 'vs_Flickr_Theme', 'theme_settings_page', get_template_directory_uri() . '/admin/config16.png');
+	add_submenu_page('vs_Flickr_Theme', 'Flickr Theme Config', 'Front Page', 'manage_options', 'vs_Flickr_Theme', 'themeConfigPage');
+	add_submenu_page('', 'Flickr Theme Config', 'Front Page', 'manage_options', 'vs_Flickr_Theme_iframe', 'themeConfigPageFrame');
 }
 
-function theme_front_page_settings() {
+// Página de configuração do thema
+function themeConfigPage() {
 	// Check that the user is allowed to update options
-	if (!current_user_can('manage_options')) {
+	if (!current_user_can('manage_options'))
 		wp_die('Você não tem permissões suficientes para acessar esta página.');
-	}
 
-	?>
-	<div class="wrap">
-		<?php screen_icon('themes'); ?> <h2>Front page elements</h2>
+	$tpl = new raintpl();
+	$tpl->draw("config");
+}
+// Iframe da página de configuração do iframe
+function themeConfigPageFrame() {
+	// Check that the user is allowed to update options
+	if (!current_user_can('manage_options'))
+		wp_die('Você não tem permissões suficientes para acessar esta página.');
 
-		<form method="POST" action="">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">
-						<label for="num_elements">
-							Number of elements on a row:
-						</label> 
-					</th>
-					<td>
-						<input type="text" name="num_elements" size="25" />
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	<?php
+	$tpl = new raintpl();
+	$tpl->assign(array(
+		"templateUri" => get_template_directory_uri()
+	));
+	$tpl->draw("configFrame");
 }
 
 // We also need to add the handler function for the top level menu
-function theme_settings_page() {
+function theme_settings_page() {}
 
+// Customizando o estilo do Admin
+function adminStyles() {
+    wp_enqueue_style('VS Flickr Styles', get_template_directory_uri() . "/admin/style.css");
+
+    wp_enqueue_script('VS Flickr Scripts', get_template_directory_uri() . "/admin/script.js");
 }
 
-// This tells WordPress to call the function named "setup_theme_admin_menus"
-// when it's time to create the menu pages.
+// Adicionando ações ao WP
 add_action("admin_menu", "setup_theme_admin_menus");
+add_action('admin_enqueue_scripts', 'adminStyles');
+// add_action('login_enqueue_scripts', 'my_admin_theme_style');
