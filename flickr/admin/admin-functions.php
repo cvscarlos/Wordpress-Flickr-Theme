@@ -27,11 +27,26 @@ function themeConfigPageFrame() {
 	if (!current_user_can("manage_options"))
 		wp_die("Você não tem permissões suficientes para acessar esta página.");
 
+	if(count($_POST))
+		return themeConfigPagePost();
+
 	$tpl = new raintpl();
 	$tpl->assign(array(
-		"templateUri" => get_template_directory_uri()
+		"templateUri" => get_template_directory_uri(),
+		"flickrUserId" => get_option("vsFlickrUserId")? get_option("vsFlickrUserId"): ""
 	));
 	$tpl->draw("configFrame");
+}
+// Configurações de POST da página de config do admin
+function themeConfigPagePost() {
+	try {
+		if(get_option("vsFlickrUserId") === false)
+			add_option("vsFlickrUserId", $_POST["userid"]);
+		else
+			update_option("vsFlickrUserId", $_POST["userid"]);
+	} catch (Exception $e) {
+		echo "Exceção pega: ",  $e->getMessage();
+	}
 }
 
 // We also need to add the handler function for the top level menu
