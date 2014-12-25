@@ -28,7 +28,7 @@
 			wrapper = $('.vsFlickrUserInfo dl');
 
 			$.jsonp({
-				url: "https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=2744a20cb770ce92cdb82c43c9f241dd&user_id=" + userid + "&format=json&jsoncallback=?",
+				url: "https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=fc5b65c11b4095f23c57019fd394c95f&user_id=" + userid + "&format=json&jsoncallback=?",
 				dataType: "jsonp",
 				callback: "loadFlickrInfoCallback",
 				success: function(data) {
@@ -105,7 +105,7 @@
 		},
 		createFrame: function() {
 			frame = $('<iframe id="vsFlickrFrame" frameborder="0"></iframe>');
-			frame.attr("src", location.href.replace("vs_Flickr_Theme", "vs_Flickr_Theme_iframe"));
+			frame.attr("src", location.href.replace("vs_flickr_theme", "vs_flickr_theme_iframe"));
 			$("#vsFlickrWrapper").append(frame);
 		}
 	}

@@ -7,9 +7,9 @@ raintpl::configure("cache_dir", get_template_directory() . "/tmp/");
 raintpl::configure( "path_replace", false );
 
 function setup_theme_admin_menus() {
-	add_menu_page("Flickr Theme Config", "Flickr Config", "manage_options", "vs_Flickr_Theme", "theme_settings_page", get_template_directory_uri() . "/admin/config16.png");
-	add_submenu_page("vs_Flickr_Theme", "Flickr Theme Config", "Front Page", "manage_options", "vs_Flickr_Theme", "themeConfigPage");
-	add_submenu_page("", "Flickr Theme Config", "Front Page", "manage_options", "vs_Flickr_Theme_iframe", "themeConfigPageFrame");
+	add_menu_page("Flickr Theme Config", "Flickr Config", "manage_options", "vs_flickr_theme", "theme_settings_page", get_template_directory_uri() . "/admin/config16.png");
+	add_submenu_page("vs_flickr_theme", "Flickr Theme Config", "Front Page", "manage_options", "vs_flickr_theme", "themeConfigPage");
+	add_submenu_page("", "Flickr Theme Config", "Front Page", "manage_options", "vs_flickr_theme_iframe", "themeConfigPageFrame");
 }
 
 // Página de configuração do thema
@@ -33,17 +33,17 @@ function themeConfigPageFrame() {
 	$tpl = new raintpl();
 	$tpl->assign(array(
 		"templateUri" => get_template_directory_uri(),
-		"flickrUserId" => get_option("vsFlickrUserId")? get_option("vsFlickrUserId"): ""
+		"flickrUserId" => get_option("vs_flickr_user_id")? get_option("vs_flickr_user_id"): ""
 	));
 	$tpl->draw("configFrame");
 }
 // Configurações de POST da página de config do admin
 function themeConfigPagePost() {
 	try {
-		if(get_option("vsFlickrUserId") === false)
-			add_option("vsFlickrUserId", $_POST["userid"]);
+		if(get_option("vs_flickr_user_id") === false)
+			add_option("vs_flickr_user_id", $_POST["userid"]);
 		else
-			update_option("vsFlickrUserId", $_POST["userid"]);
+			update_option("vs_flickr_user_id", $_POST["userid"]);
 	} catch (Exception $e) {
 		echo "Exceção pega: ",  $e->getMessage();
 	}
@@ -66,9 +66,10 @@ function custom_post_flickr_album() {
 		"label"  => "Albums",
 		"menu_icon" => get_template_directory_uri() . "/admin/album16.png",
 		"supports" => array("title", "editor", "custom-fields", "page-attributes"),
-		"hierarchical" => true
+		"hierarchical" => true,
+		"rewrite" => array("slug" => "album")
 	);
-	register_post_type("vs_album", $args);
+	register_post_type("vs_flickr_album", $args);
 }
 
 // Adicionando ações ao WP

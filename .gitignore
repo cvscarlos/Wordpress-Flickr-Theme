@@ -1,2 +1,3 @@
 /flickr/tmp/*
 !/flickr/tmp/.gitkeep
+/flickr/cache
