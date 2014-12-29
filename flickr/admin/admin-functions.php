@@ -59,21 +59,7 @@ function admin_styles() {
 	wp_enqueue_script("VS Flickr Scripts", get_template_directory_uri() . "/admin/script.js");
 }
 
-// Post Customizado: Álbum do Flickr
-function custom_post_flickr_album() {
-	$args = array(
-		"public" => true,
-		"label"  => "Albums",
-		"menu_icon" => get_template_directory_uri() . "/admin/album16.png",
-		"supports" => array("title", "editor", "custom-fields", "page-attributes"),
-		"hierarchical" => true,
-		"rewrite" => array("slug" => "album")
-	);
-	register_post_type("vs_flickr_album", $args);
-}
-
 // Adicionando ações ao WP
-add_action("init", "custom_post_flickr_album");
 add_action("admin_menu", "setup_theme_admin_menus");
 add_action("admin_enqueue_scripts", "admin_styles");
 // add_action("login_enqueue_scripts", "my_admin_theme_style");

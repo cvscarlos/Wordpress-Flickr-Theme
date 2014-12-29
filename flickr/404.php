@@ -1,5 +1,4 @@
 <?php
-flickr_redirect();
 get_header();
 ?>
 
