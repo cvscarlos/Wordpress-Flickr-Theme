@@ -24,7 +24,7 @@ function custom_post_flickr_photo() {
 		"public" => true,
 		"label"  => "Photos",
 		"menu_icon" => get_template_directory_uri() . "/admin/photos16.png",
-		"supports" => array("title", "editor", "custom-fields", "page-attributes"),
+		"supports" => array("title", "editor", "custom-fields"),
 		"hierarchical" => false,
 		"rewrite" => array("slug" => "photo")
 	);

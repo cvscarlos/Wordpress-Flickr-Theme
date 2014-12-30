@@ -1,7 +1,4 @@
 <?php
-/*
-Template Name: Gallery
-*/
 $albumId = get_post_custom_values("vsFlickrAlbumId", get_the_ID())[0];
 
 $albumInfo = get_flickr_album_info($albumId);
@@ -15,7 +12,6 @@ foreach ($albumJson->photoset->photo as $v) {
 	$album .= "<img src='https://farm{$v->farm}.staticflickr.com/{$v->server}/{$v->id}_{$v->secret}_m.jpg' alt='{$v->title->_content}' />";
 	$album .= '</a></li>';
 }
-
 
 get_header();
 ?>
