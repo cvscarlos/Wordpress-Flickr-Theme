@@ -33,15 +33,19 @@ function get_flickr_album($ps_id) {
 function check_album_post($json) {
 	if($json->stat == "ok")
 		$post = vs_flickr_post(false, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID());
-	else
+	else{
 		$post = vs_flickr_post(false, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID(), 0, "draft");
+		wp_redirect(get_site_url(), 302);
+	}
 }
 // Verifica se o álbum esta disponível no Flickr
 function check_photo_post($json) {
 	if($json->stat == "ok")
 		$post = vs_flickr_post(true, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID());
-	else
+	else{
 		$post = vs_flickr_post(true, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID(), 0, "draft");
+		wp_redirect(get_site_url(), 302);
+	}
 }
 
 
@@ -71,7 +75,7 @@ function vs_flickr_post($isPhoto, $title, $desc, $time, $id = 0, $parent = 0, $p
 function vs_flickr_post_query($isPhoto = false) {
 	$args = array(
 		"meta_key"		=> $isPhoto? "vsFlickrPhotoId"	: "vsFlickrAlbumId",
-		"meta_value"	=> $isPhoto? $_GET["p"]			: $_GET["ps"],
+		"meta_value"	=> $isPhoto? $_GET["f_p"]			: $_GET["f_ps"],
 		"post_type"		=> $isPhoto? "vs_flickr_photo"	: "vs_flickr_album",
 		"post_status"	=> array("publish", "draft")
 	);
@@ -104,12 +108,12 @@ function vs_flickr_post_query_manage($isPhoto, $json, $id, $query, $parent = 0) 
 }
 // Redireciona quando é um álbum
 function vs_flickr_album_redirect(){
-	$albumInfo = get_flickr_album_info($_GET["ps"]);
+	$albumInfo = get_flickr_album_info($_GET["f_ps"]);
 	vs_flickr_post_query_manage(false, $albumInfo, $albumInfo->photoset->id, vs_flickr_post_query());
 }
 // Redireciona quando é uma foto
 function vs_flickr_photo_redirect(){
-	$photoInfo = get_flickr_photo_info($_GET["p"]);
+	$photoInfo = get_flickr_photo_info($_GET["f_p"]);
 	vs_flickr_post_query_manage(true, $photoInfo, $photoInfo->photo->id, vs_flickr_post_query(true));
 }
 // Redirecionando quando esta em "_r"
@@ -122,12 +126,20 @@ function vs_flickr_redirect(){
 
 	$fragment = substr(str_replace($site_path, "", $_SERVER["REQUEST_URI"]), 0, 4);
 	if($fragment === "/_r/"){
-		if(isset($_GET["ps"]))
+		if(isset($_GET["f_ps"]))
 			vs_flickr_album_redirect();
-		elseif(isset($_GET["p"]))
+		elseif(isset($_GET["f_p"]))
 			vs_flickr_photo_redirect();
 	}
 }
+function vs_flickr_redirect_2(){
+	if(isset($_GET["f_ps"]))
+		vs_flickr_album_redirect();
+	elseif(isset($_GET["f_p"]))
+		vs_flickr_photo_redirect();
+}
 // fazendo uma simples verificação se é uma url de redirecionamento e então aplica a função de redirect
-if(strpos($_SERVER["REQUEST_URI"], "/_r/") !== false)
-	vs_flickr_redirect();
+// if(strpos($_SERVER["REQUEST_URI"], "/_r/") !== false)
+	// vs_flickr_redirect();
+if(isset($_GET["_r"]) && $_GET["_r"] == 1)
+	vs_flickr_redirect_2();

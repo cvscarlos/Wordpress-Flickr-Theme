@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php 
+$post = get_post();
+get_header();
+echo nl2br($post->post_content);
+?>
 
 -- SINGLE --
 
