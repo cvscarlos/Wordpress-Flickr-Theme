@@ -32,17 +32,22 @@ function get_flickr_album($ps_id) {
 // Verifica se o álbum esta disponível no Flickr
 function check_album_post($json) {
 	if($json->stat == "ok")
-		$post = vs_flickr_post($isPhoto, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID());
+		$post = vs_flickr_post(false, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID());
 	else
-		$post = vs_flickr_post($isPhoto, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID(), 0, "draft");
+		$post = vs_flickr_post(false, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID(), 0, "draft");
 }
 // Verifica se o álbum esta disponível no Flickr
 function check_photo_post($json) {
 	if($json->stat == "ok")
-		$post = vs_flickr_post($isPhoto, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID());
+		$post = vs_flickr_post(true, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID());
 	else
-		$post = vs_flickr_post($isPhoto, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID(), 0, "draft");
+		$post = vs_flickr_post(true, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID(), 0, "draft");
 }
+
+
+/*
+REDIRECIONAMENTO
+*/
 // Adiciona ou atualiza um post existente
 function vs_flickr_post($isPhoto, $title, $desc, $time, $id = 0, $parent = 0, $postStatus = "publish") {
 	$post = array(
@@ -62,11 +67,6 @@ function vs_flickr_post($isPhoto, $title, $desc, $time, $id = 0, $parent = 0, $p
 
 	return wp_insert_post($post);
 }
-
-
-/*
-REDIRECIONAMENTO
-*/
 // Buscando os post de album ou foto
 function vs_flickr_post_query($isPhoto = false) {
 	$args = array(
@@ -104,17 +104,13 @@ function vs_flickr_post_query_manage($isPhoto, $json, $id, $query, $parent = 0) 
 }
 // Redireciona quando é um álbum
 function vs_flickr_album_redirect(){
-	$query = vs_flickr_post_query();
 	$albumInfo = get_flickr_album_info($_GET["ps"]);
-	
-	vs_flickr_post_query_manage(false, $albumInfo, $albumInfo->photoset->id, $query);
+	vs_flickr_post_query_manage(false, $albumInfo, $albumInfo->photoset->id, vs_flickr_post_query());
 }
 // Redireciona quando é uma foto
 function vs_flickr_photo_redirect(){
-	$query = vs_flickr_post_query(true);
 	$photoInfo = get_flickr_photo_info($_GET["p"]);
-
-	vs_flickr_post_query_manage(true, $photoInfo, $photoInfo->photo->id, $query);
+	vs_flickr_post_query_manage(true, $photoInfo, $photoInfo->photo->id, vs_flickr_post_query(true));
 }
 // Redirecionando quando esta em "_r"
 function vs_flickr_redirect(){

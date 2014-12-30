@@ -10,7 +10,11 @@ foreach ($albums->photosets->photoset as $v) {
 	$album .= '</a></li>';
 }
 
+$post = get_post();
+
 get_header();
+
+echo nl2br($post->post_content);
 ?>
 
 <ul>
