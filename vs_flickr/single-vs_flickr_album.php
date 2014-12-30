@@ -1,8 +1,6 @@
 <?php
 $albumId = get_post_custom_values("vsFlickrAlbumId", get_the_ID())[0];
-
 $albumInfo = get_flickr_album_info($albumId);
-
 check_album_post($albumInfo);
 
 $albumJson = get_flickr_album($albumId);

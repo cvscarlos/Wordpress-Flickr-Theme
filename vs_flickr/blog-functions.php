@@ -30,11 +30,18 @@ function get_flickr_album($ps_id) {
 	return $json;
 }
 // Verifica se o álbum esta disponível no Flickr
-function check_album_post($albumInfo) {
-	if($albumInfo->stat == "ok")
-		$post = vs_flickr_post($isPhoto, $albumInfo->photoset->title->_content, $albumInfo->photoset->description->_content, $albumInfo->photoset->date_create, get_the_ID());
+function check_album_post($json) {
+	if($json->stat == "ok")
+		$post = vs_flickr_post($isPhoto, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID());
 	else
-		$post = vs_flickr_post($isPhoto, $albumInfo->photoset->title->_content, $albumInfo->photoset->description->_content, $albumInfo->photoset->date_create, get_the_ID(), 0, "draft");
+		$post = vs_flickr_post($isPhoto, $json->photoset->title->_content, $json->photoset->description->_content, $json->photoset->date_create, get_the_ID(), 0, "draft");
+}
+// Verifica se o álbum esta disponível no Flickr
+function check_photo_post($json) {
+	if($json->stat == "ok")
+		$post = vs_flickr_post($isPhoto, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID());
+	else
+		$post = vs_flickr_post($isPhoto, $json->photo->title->_content, $json->photo->description->_content, $json->photo->dates->posted, get_the_ID(), 0, "draft");
 }
 // Adiciona ou atualiza um post existente
 function vs_flickr_post($isPhoto, $title, $desc, $time, $id = 0, $parent = 0, $postStatus = "publish") {
