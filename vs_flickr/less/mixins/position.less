@@ -1,0 +1,136 @@
+// Mixins para auxiliar o posicionamento
+
+// POSIÇÃO ABSOLUTA
+.absolute(@left: 0, @top: 0){
+	position: absolute;
+	top: @top;
+	left: @left;
+}
+.absolute(@left: 0, @top: 0, @zindex: 0) when (isnumber(@zindex)) and not (@zindex = 0){
+	.absolute(@left, @top);
+	z-index: @zindex;
+}
+
+.absolute(@type: type) when (@type = full){
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.absolute-b(@left: 0, @bottom: 0, @zindex: 0) when (isnumber(@zindex)) and not (@zindex = 0){
+	.absolute-b(@left, @bottom);
+	z-index: @zindex;
+}
+.absolute-b(@left: 0, @bottom: 0){
+	position: absolute;
+	bottom: @bottom;
+	left: @left;
+}
+
+.absolute-r(@right: 0, @top: 0){
+	position: absolute;
+	top: @top;
+	left: auto;
+	right: @right;
+}
+.absolute-r(@right: 0, @top: 0, @zindex: 0) when (isnumber(@zindex)) and not (@zindex = 0){
+	.absolute-r(@right, @top);
+	z-index: @zindex;
+}
+
+.absolute-r-b(@right: 0, @bottom: 0){
+	position: absolute;
+	bottom: @bottom;
+	left: auto;
+	right: @right;
+}
+.absolute-r-b(@right: 0, @bottom: 0, @zindex: 0) when (isnumber(@zindex)) and not (@zindex = 0){
+	.absolute-r-b(@right: 0, @bottom: 0);
+	z-index: @zindex;
+}
+
+
+// POSIÇÃO FIXA
+/*
+Modo de usar:
+1 - Para obter um posicionamento apenas com top e left use:
+	.fixed(); // Por padrão será definido 0 para "top" e "left"
+2 - Para obter um posicionamento já setando "z-index" e "width:100%" use:
+	.fixed(0, 0, 1);
+3 - Para obter o mesmo comportamento do item 2 mas alterando o "width" use:
+	.fixed(0, 0, 1, 250px);
+4 - para definir tudo para os valores padrões ("left:0", "top:0", "width:100%", "z-index:10") use:
+	.fixed("auto");
+*/
+.fixed(@left: 0, @top: 0){
+	position: fixed;
+	top: @top;
+	left: @left;
+}
+.fixed(@left: 0, @top: 0, @zindex: 0, @width: 0) when (isnumber(@zindex)) and not (@zindex = 0) and (@width = 0){
+	position: fixed;
+	top: @top;
+	left: @left;
+	z-index: @zindex;
+}
+.fixed(@left: 0, @top: 0, @zindex: 0, @width: 100%) when (isnumber(@zindex)) and not (@zindex = 0) and not (@width = 0){
+	position: fixed;
+	top: @top;
+	left: @left;
+	z-index: @zindex;
+	width: @width;
+}
+.fixed(@auto) when (@auto = "auto"){
+	.fixed(0, 0, 10);
+}
+
+.fixed-b(@left: 0, @bottom: 0){
+	position: fixed;
+	bottom: @bottom;
+	left: @left;
+}
+
+.fixed-r(@right: 0, @top: 0){
+	position: fixed;
+	top: @top;
+	left: auto;
+	right: @right;
+}
+
+.fixed-r-b(@right: 0, @bottom: 0){
+	position: fixed;
+	bottom: @bottom;
+	left: auto;
+	right: @right;
+}
+
+
+// POSIÇÃO RELATIVA
+.relative(@left: 0, @top: 0){
+	position: relative;
+	top: @top;
+	left: @left;
+}
+.relative(@left: 0, @top: 0, @zindex: 0) when (isnumber(@zindex)) and not (@zindex = 0){
+	.relative(@left, @top);
+	z-index: @zindex;
+}
+
+.relative-b(@left: 0, @bottom: 0){
+	position: relative;
+	bottom: @bottom;
+	left: @left;
+}
+
+.relative-r(@right: 0, @top: 0){
+	position: relative;
+	top: @top;
+	left: auto;
+	right: @right;
+}
+.relative-r(@right: 0, @top: 0, @zindex: 0) when (isnumber(@zindex)) and not (@zindex = 0){
+	.relative-r(@right, @top);
+	z-index: @zindex;
+}

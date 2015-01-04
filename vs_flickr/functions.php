@@ -3,8 +3,10 @@
 if ( is_admin() )
 	include_once get_template_directory() . "/admin/admin-functions.php";
 // FUNÇÕES CUSTOMIZADAS PARA O BLOG
-else
+else{
 	include_once get_template_directory() . "/blog-functions.php";
+	include_once get_template_directory() . "/blog-definitions.php";
+}
 
 // Post Customizado: Álbum do Flickr
 function custom_post_flickr_album() {
@@ -31,6 +33,12 @@ function custom_post_flickr_photo() {
 	register_post_type("vs_flickr_photo", $args);
 }
 
+// Menu Lateral
+function vs_flickr_side_menu() {
+  register_nav_menu('side-menu', __('Side Menu'));
+}
+
 // Adicionando ações ao WP
 add_action("init", "custom_post_flickr_album");
 add_action("init", "custom_post_flickr_photo");
+add_action('init', 'vs_flickr_side_menu');

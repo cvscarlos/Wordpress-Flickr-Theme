@@ -143,3 +143,15 @@ function vs_flickr_redirect_2(){
 	// vs_flickr_redirect();
 if(isset($_GET["_r"]) && $_GET["_r"] == 1)
 	vs_flickr_redirect_2();
+
+
+/*
+ESTILOS
+*/
+function blog_scripts() {
+	wp_enqueue_style("bootstrap", get_template_directory_uri() . "/vsf.bootstrap.css");
+	wp_enqueue_style("vsf-common", get_template_directory_uri() . "/vsf.common.css");
+
+	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js", array('jquery'));
+}
+add_action("wp_enqueue_scripts", "blog_scripts");

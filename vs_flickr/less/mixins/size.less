@@ -1,0 +1,17 @@
+// Setando altura e largura em uma única função
+.size(@width, @height, @display){
+	.size(@width, @height);
+	display: @display;
+}
+.size(@width: 100%, @height: 100%){
+	width: @width;
+	height: @height;
+}
+.min-size(@width: 1px, @height: 1px) {
+	min-width: @width;
+	min-height: @height;
+}
+.max-size(@width, @height) {
+	max-width: @width;
+	max-height: @height;
+}
