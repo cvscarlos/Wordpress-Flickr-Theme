@@ -5,6 +5,10 @@ $vsf_tpl = array();
 $vsf_tpl["menu_args"] = array(
 	"theme_location" => "side-menu"
 );
+// Menu Lateral - Redes Sociais
+$vsf_tpl["social_menu_args"] = array(
+	"theme_location" => "social-menu"
+);
 
 // Título do site
 $vsf_tpl["title"] = wp_title('|', true, 'right');

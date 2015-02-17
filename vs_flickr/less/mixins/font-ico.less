@@ -1,0 +1,33 @@
+// Reset para usar icones
+.font-ico-reset(@family: @icon-font-family) when not(isnumber(@family)){
+	.font-ico-style(1em, @family);
+}
+.font-ico-reset(@font-size, @family: @icon-font-family) when (isnumber(@font-size)){
+	.font-ico-style(@font-size, @family);
+}
+.font-ico-style(@font-size: 1em, @family: @icon-font-family){
+	display: inline-block;
+	font-size: @font-size;
+	font-style: normal;
+	font-weight: normal;
+	height: 1em;
+	text-align: center;
+	text-decoration: inherit;
+	text-rendering: optimizelegibility;
+	width: 1em;
+	font-family: @family;
+}
+
+// Adiciona um icone de fonte
+.font-ico(@content, @family: @icon-font-family, @font-size: 0) when (isnumber(@font-size)) and (@font-size > 0){
+	content: @content;
+	.font-ico-reset(@font-size, @family);
+}
+.font-ico(@content, @font-size: 0) when (isnumber(@font-size)) and (@font-size > 0){
+	content: @content;
+	.font-ico-reset(@font-size);
+}
+.font-ico(@content, @family: @icon-font-family){
+	content: @content;
+	.font-ico-reset(@family);
+}

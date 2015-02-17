@@ -1,1 +1,160 @@
-.vsf-table{display:table;width:100%;height:100%}.vsf-cell{display:table-cell;height:100%}.vsf-side-menu{background-color:#1d2b36;width:260px;color:#fff}.vsf-side-menu-bg{background-color:#1d2b36;position:fixed;top:0;left:0;bottom:0;width:260px}.vsf-logo{margin:45px auto 30px;text-align:center}.vsf-main{background-color:yellow}
+.vsf-table {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.vsf-cell {
+  display: table-cell;
+  height: 100%;
+  vertical-align: top;
+}
+.vsf-side-menu {
+  color: #0f0e0e;
+}
+.vsf-side-menu * {
+  transition: all 0.2s ease-out;
+}
+.vsf-side-menu-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  box-shadow: 1px 0 4px -4px #0f0e0e;
+}
+.vsf-side-menu,
+.vsf-side-menu-bg {
+  width: 260px;
+  background-color: #fafaf5;
+}
+.vsf-side-menu .vsf-side-menu-wrapper ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+  display: block;
+}
+.vsf-side-menu .vsf-side-menu-wrapper ul > li {
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #fcfcfc;
+  border-left: 10px solid #fafaf5;
+  display: table;
+  width: 100%;
+}
+.vsf-side-menu .vsf-side-menu-wrapper ul > li:hover {
+  border-left: 10px solid #f2dc4e;
+  background-color: #fefefe;
+}
+.vsf-side-menu .vsf-side-menu-wrapper ul > li:hover a {
+  padding-left: 30px;
+}
+.vsf-side-menu .vsf-side-menu-wrapper ul > li > a {
+  width: 100%;
+  height: 62px;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 25px;
+  padding-right: 8px;
+}
+.vsf-side-menu .vsf-social-menu ul {
+  list-style: none;
+  padding: 8px 0 0 0;
+  text-align: center;
+  margin-top: 70px;
+  border-top: 1px solid #efefef;
+}
+.vsf-side-menu .vsf-social-menu li {
+  display: inline;
+  padding: 5px;
+}
+.vsf-side-menu .vsf-social-menu a {
+  white-space: nowrap;
+  font-size: 0;
+  color: transparent;
+  text-decoration: none;
+}
+.vsf-side-menu .vsf-social-menu a:hover:before {
+  color: #0f0e0e;
+}
+.vsf-side-menu .vsf-social-menu a:before {
+  content: "\f096";
+  display: inline-block;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: normal;
+  height: 1em;
+  text-align: center;
+  text-decoration: inherit;
+  text-rendering: optimizelegibility;
+  width: 1em;
+  font-family: 'FontAwesome';
+  line-height: 1;
+  font-size: 26px;
+  color: #5e5858;
+}
+.vsf-side-menu .vsf-social-menu a[class*="facebook"]:before {
+  content: "\f082";
+}
+.vsf-side-menu .vsf-social-menu a[class*="behance"]:before {
+  content: "\f1b5";
+}
+.vsf-side-menu .vsf-social-menu a[class*="delicious"]:before {
+  content: "\f1a5";
+}
+.vsf-side-menu .vsf-social-menu a[class*="deviantart"]:before {
+  content: "\f1bd";
+}
+.vsf-side-menu .vsf-social-menu a[class*="flickr"]:before {
+  content: "\f16e";
+}
+.vsf-side-menu .vsf-social-menu a[class*="foursquare"]:before {
+  content: "\f180";
+}
+.vsf-side-menu .vsf-social-menu a[class*="google"][class*="plus"]:before {
+  content: "\f0d4";
+}
+.vsf-side-menu .vsf-social-menu a[class*="instagram"]:before {
+  content: "\f16d";
+}
+.vsf-side-menu .vsf-social-menu a[class*="lastfm"]:before {
+  content: "\f203";
+}
+.vsf-side-menu .vsf-social-menu a[class*="linkedin"]:before {
+  content: "\f08c";
+}
+.vsf-side-menu .vsf-social-menu a[class*="pinterest"]:before {
+  content: "\f0d3";
+}
+.vsf-side-menu .vsf-social-menu a[class*="soundcloud"]:before {
+  content: "\f1be";
+}
+.vsf-side-menu .vsf-social-menu a[class*="tumblr"]:before {
+  content: "\f174";
+}
+.vsf-side-menu .vsf-social-menu a[class*="twitter"]:before {
+  content: "\f081";
+}
+.vsf-side-menu .vsf-social-menu a[class*="vimeo"]:before {
+  content: "\f194";
+}
+.vsf-side-menu .vsf-social-menu a[class*="youtube"]:before {
+  content: "\f166";
+}
+.vsf-logo {
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+  display: table;
+  width: 100%;
+  height: 220px;
+}
+.vsf-logo a {
+  text-decoration: none;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  color: #DC971F;
+  font-weight: 700;
+}
+.vsf-main {
+  background-color: yellow;
+}

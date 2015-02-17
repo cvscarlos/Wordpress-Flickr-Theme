@@ -1,12 +1,136 @@
 .vsf-side-menu{
-	background-color: @side-menu-bg;
-	width: @side-menu-width;
-	color: @light;
+	@side-menu-width: 260px;
+	
+	color: contrast(@side-menu-bg, @dark, @light);
+	
+	*{
+		.transition();
+	}
 
 	&-bg{
-		background-color: @side-menu-bg;
 		.fixed();
 		bottom: 0;
+		box-shadow: 1px 0 4px -4px @dark;
+	}
+	
+	&,
+	&-bg{
 		width: @side-menu-width;
+		background-color: @side-menu-bg;
+	}
+
+	.vsf-side-menu-wrapper ul{
+		list-style: none;
+		padding: 0;
+		font-size: @font-size-sm;
+		display: block;
+
+		>li{
+			border-top: 1px solid @side-menu-border;
+			border-bottom: 1px solid @white;
+			border-left: 10px solid @side-menu-bg;
+			display: table;
+			width: 100%;
+
+			&:hover{
+				border-left: 10px solid @side-menu-hover-border;
+				background-color: @side-menu-hover-bg;
+
+				a{
+					padding-left: 30px;
+				}
+			}
+
+			>a{
+				.size(100%, 62px);
+				display: table-cell;
+				vertical-align: middle;
+				padding-left: 25px;
+				padding-right: 8px;
+			}
+		}
+	}
+
+	// Redes Sociais
+	.vsf-social-menu{
+		ul{
+			list-style: none;
+			padding: 8px 0 0 0;
+			text-align: center;
+			margin-top: 70px;
+			border-top: 1px solid @side-menu-border;
+		}
+
+		li{
+			display: inline;
+			padding: 5px;
+		}
+
+		a{
+			white-space: nowrap;
+			font-size: 0;
+			color: transparent;
+			text-decoration: none;
+
+			&:hover:before{
+				color: contrast(@side-menu-bg, @dark, @light);
+			}
+
+			&:before{
+				.font-ico("\f096");
+				line-height: 1;
+				font-size: @font-size-h4;
+				color: lighten(contrast(@side-menu-bg, @dark, @light), 30%);
+			}
+
+			&[class*="facebook"]:before{
+				content: "\f082";
+			}
+			&[class*="behance"]:before{
+				content: "\f1b5";
+			}
+			&[class*="delicious"]:before{
+				content: "\f1a5";
+			}
+			&[class*="deviantart"]:before{
+				content: "\f1bd";
+			}
+			&[class*="flickr"]:before{
+				content: "\f16e";
+			}
+			&[class*="foursquare"]:before{
+				content: "\f180";
+			}
+			&[class*="google"][class*="plus"]:before{
+				content: "\f0d4";
+			}
+			&[class*="instagram"]:before{
+				content: "\f16d";
+			}
+			&[class*="lastfm"]:before{
+				content: "\f203";
+			}
+			&[class*="linkedin"]:before{
+				content: "\f08c";
+			}
+			&[class*="pinterest"]:before{
+				content: "\f0d3";
+			}
+			&[class*="soundcloud"]:before{
+				content: "\f1be";
+			}
+			&[class*="tumblr"]:before{
+				content: "\f174";
+			}
+			&[class*="twitter"]:before{
+				content: "\f081";
+			}
+			&[class*="vimeo"]:before{
+				content: "\f194";
+			}
+			&[class*="youtube"]:before{
+				content: "\f166";
+			}
+		}
 	}
 }

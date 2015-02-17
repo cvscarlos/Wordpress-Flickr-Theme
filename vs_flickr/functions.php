@@ -36,6 +36,7 @@ function custom_post_flickr_photo() {
 // Menu Lateral
 function vs_flickr_side_menu() {
   register_nav_menu('side-menu', __('Side Menu'));
+  register_nav_menu('social-menu', __('Social Menu'));
 }
 
 // Adicionando ações ao WP

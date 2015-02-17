@@ -151,7 +151,10 @@ ESTILOS
 function blog_scripts() {
 	wp_enqueue_style("bootstrap", get_template_directory_uri() . "/vsf.bootstrap.css");
 	wp_enqueue_style("vsf-common", get_template_directory_uri() . "/vsf.common.css");
+	wp_enqueue_style("open-sans", "//fonts.googleapis.com/css?family=Open+Sans:400,700");
+	wp_enqueue_style("font-awesome", "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 
-	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js", array('jquery'));
+	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js", array('jquery'));
+	wp_enqueue_script("vsf-base", get_template_directory_uri() . "/vsf.functions.base.js", array('jquery'));
 }
 add_action("wp_enqueue_scripts", "blog_scripts");
