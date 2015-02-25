@@ -1,0 +1,22 @@
+.vsf-photo-galleries{
+	@img-max-size: 250px;
+
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	li{
+		margin-left: 12px;
+		margin-bottom: 12px;
+		overflow: hidden;
+		float: left;
+		.max-size(@img-max-size, @img-max-size);
+		.size();
+	}
+
+	img{
+		.min-size(@img-max-size, @img-max-size);
+	}
+}

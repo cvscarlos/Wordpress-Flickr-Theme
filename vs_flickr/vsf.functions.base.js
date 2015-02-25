@@ -24,6 +24,22 @@
 				});
 			}
 		};
+
+		var Gallery = {
+			run: function() {},
+			init: function() {
+				Gallery.setImageOrientation();
+			},
+			ajaxStop: function() {},
+			windowOnload: function() {},
+			setImageOrientation: function(){
+				$(".vsf-photo-galleries img").each(function() {
+					var $t = $(this);
+					if($t.height() > $t.width())
+						$t.addClass("vsf-landscape");
+				});
+			}
+		};
 	}
 	catch (e) {(typeof console !== "undefined" && typeof console.error === "function" && console.error("Houve um erro nos objetos. Detalhes: " + e.message)); }
 
@@ -33,15 +49,18 @@
 
 			windowLoad = function() {
 				Common.windowOnload();
+				if (body.is(".page-template-template-gallery")) Gallery.windowOnload();
 			};
 
 			ajaxStop = function() {
 				Common.ajaxStop();
+				if (body.is(".page-template-template-gallery")) Gallery.ajaxStop();
 			};
 
 			$(function() {
 				body = $("body");
 				Common.init();
+				if (body.is(".page-template-template-gallery")) Gallery.init();
 				$(document).ajaxStop(ajaxStop);
 				$(window).load(windowLoad);
 				body.addClass('jsFullLoaded');
