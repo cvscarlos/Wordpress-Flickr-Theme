@@ -12,7 +12,7 @@
 			<div class="vsf-side-menu-bg"> </div>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-30">
 						<h1 class="vsf-logo"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
 						<div class="vsf-side-menu-wrapper">
 							<?php wp_nav_menu($vsf_tpl["menu_args"]); ?>
@@ -27,4 +27,4 @@
 		<div class="vsf-cell vsf-main">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-30">

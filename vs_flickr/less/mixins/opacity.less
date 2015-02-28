@@ -1,0 +1,6 @@
+// Definindo opacidade de elementos
+.opacity(@value: 0.7) {
+	@ie-value: @value * 100;
+	opacity: @value;
+	filter: alpha(opacity=@ie-value);
+}

@@ -33,7 +33,7 @@
 			ajaxStop: function() {},
 			windowOnload: function() {},
 			setImageOrientation: function(){
-				$(".vsf-photo-galleries img").each(function() {
+				$(".vsf-photo-galleries .vsf-gallery-cover").each(function() {
 					var $t = $(this);
 					if($t.height() > $t.width())
 						$t.addClass("vsf-landscape");

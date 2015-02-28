@@ -1,7 +1,7 @@
 .vsf-side-menu{
 	@side-menu-width: 260px;
 	
-	color: contrast(@side-menu-bg, @dark, @light);
+	color: contrast(@side-menu-bg, @color-darken, @color-lighten);
 	
 	*{
 		.transition();
@@ -10,7 +10,7 @@
 	&-bg{
 		.fixed();
 		bottom: 0;
-		box-shadow: 1px 0 4px -4px @dark;
+		box-shadow: 1px 0 4px -4px @color-darken;
 	}
 	
 	&,
@@ -73,14 +73,14 @@
 			text-decoration: none;
 
 			&:hover:before{
-				color: contrast(@side-menu-bg, @dark, @light);
+				color: contrast(@side-menu-bg, @color-darken, @color-lighten);
 			}
 
 			&:before{
 				.font-ico("\f096");
 				line-height: 1;
 				font-size: @font-size-h4;
-				color: lighten(contrast(@side-menu-bg, @dark, @light), 30%);
+				color: lighten(contrast(@side-menu-bg, @color-darken, @color-lighten), 30%);
 			}
 
 			&[class*="facebook"]:before{
