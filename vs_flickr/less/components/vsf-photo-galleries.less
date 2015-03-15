@@ -10,6 +10,12 @@
 	li{
 		float: left;
 		.max-size(@img-max-size, @img-max-size);
+
+		&:hover{
+			.vsf-gallery-title{
+				display: block;
+			}
+		}
 	}
 
 	.vsf-gallery-cover-wrapper{
@@ -24,6 +30,7 @@
 		bottom: 0;
 		right: 0;
 		margin: 0;
+		display: none;
 
 		b{
 			.size();
@@ -69,6 +76,7 @@
 		bottom: -100%;
 		margin: auto; 
 		max-height: @img-max-size;
+		.transition();
 
 		&.vsf-landscape{
 			max-width: @img-max-size;

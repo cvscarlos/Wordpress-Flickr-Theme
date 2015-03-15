@@ -168,6 +168,9 @@
   max-width: 250px;
   max-height: 250px;
 }
+.vsf-photo-galleries li:hover .vsf-gallery-title {
+  display: block;
+}
 .vsf-photo-galleries .vsf-gallery-cover-wrapper {
   margin-left: 12px;
   margin-bottom: 12px;
@@ -181,6 +184,7 @@
   bottom: 0;
   right: 0;
   margin: 0;
+  display: none;
 }
 .vsf-photo-galleries .vsf-gallery-title b {
   width: 100%;
@@ -244,6 +248,7 @@
   bottom: -100%;
   margin: auto;
   max-height: 250px;
+  transition: all 0.2s ease-out;
 }
 .vsf-photo-galleries .vsf-gallery-cover.vsf-landscape {
   max-width: 250px;

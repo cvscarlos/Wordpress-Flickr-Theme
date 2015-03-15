@@ -33,10 +33,17 @@
 			ajaxStop: function() {},
 			windowOnload: function() {},
 			setImageOrientation: function(){
-				$(".vsf-photo-galleries .vsf-gallery-cover").each(function() {
-					var $t = $(this);
+				window.vsfSetImageOrientation = function(img) {
+					$t = $(img);
 					if($t.height() > $t.width())
 						$t.addClass("vsf-landscape");
+				}
+
+				$(".vsf-photo-galleries .vsf-gallery-cover").each(function() {
+					window.vsfSetImageOrientation(this);
+				})
+				.load(function() {
+					window.vsfSetImageOrientation(this);
 				});
 			}
 		};
