@@ -1,3 +1,33 @@
 .vsf-main{
 	background-color: @main-content-bg;
+	color: @color-lighten;
+	text-align: center;
+
+	@media (min-width: @screen-sm-min) {
+		padding-left: 20px;
+	}
+
+	hr{
+		width: 90%;
+		background-color: @color-lighten;
+		color: @color-lighten;
+		border-color: @color-lighten;
+		position: relative;
+		display: block;
+		overflow: visible;
+
+		&:before{
+			@padding: 8px;
+
+			.font-ico("\f04d");
+			.absolute(50%, -50%);
+			font-size: @font-size-xs;
+			margin-left: -((@font-size-xs + @padding) / 2);
+			margin-top: -((@font-size-xs + @padding) / 2);
+			line-height: @font-size-xs + @padding;
+			.size(@font-size-xs + @padding, @font-size-xs + @padding);
+			background-color: @main-content-bg;
+			transform: rotate(45deg);
+		}
+	}
 }
