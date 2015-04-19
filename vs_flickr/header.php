@@ -17,9 +17,9 @@
 <body <?php body_class(); ?>>
 	<div class="vsf-table">
 		<div class="vsf-trow visible-xs">
-			<div class="vsf-mobile-bar">
-				<h1 class="vsf-logo-mobile"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
-				<button><i class="fa fa-bars"></i></button>
+			<div class="vsf-mobile-bar vsf-table">
+				<h1 class="vsf-logo-mobile vsf-cell"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+				<div class="vsf-menu-button vsf-cell"><button><i class="fa fa-bars"></i></button></div>
 			</div>
 		</div>
 		<div class="vsf-trow">

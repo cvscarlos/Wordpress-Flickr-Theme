@@ -166,7 +166,6 @@
 }
 .vsf-logo-mobile {
   margin: 0;
-  background: #3e494b;
   padding: 8px;
 }
 .vsf-logo-mobile a {
@@ -328,4 +327,20 @@
   max-height: none;
   width: 100%;
   height: auto;
+}
+.vsf-mobile-bar {
+  background: #3e494b;
+}
+.vsf-mobile-bar .vsf-cell {
+  vertical-align: middle;
+}
+.vsf-mobile-bar .vsf-menu-button button {
+  background-color: #333;
+  border: 0;
+  float: right;
+  margin-right: 15px;
+  padding: 4px 10px;
+  color: #f5f5f5;
+  font-size: 26px;
+  border-radius: 4px;
 }
