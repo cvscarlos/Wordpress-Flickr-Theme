@@ -19,6 +19,7 @@
 		<div class="vsf-trow visible-xs">
 			<div class="vsf-mobile-bar">
 				<h1 class="vsf-logo-mobile"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+				<button><i class="fa fa-bars"></i></button>
 			</div>
 		</div>
 		<div class="vsf-trow">
