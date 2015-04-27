@@ -1,12 +1,16 @@
 .vsf-mobile-bar{
 	background: @side-menu-bg;
+	.fixed(0, 0, 999);
+	height: auto;
+	border-bottom: @main-content-bg 2px solid;
+	box-shadow: 0 2px 20px @main-content-bg;
 
 	.vsf-cell{
 		vertical-align: middle;
 	}
 
 	.vsf-menu-button button{
-		background-color: #333;
+		background-color: @color-2-700;
 		border: 0;
 		float: right;
 		margin-right: 15px;

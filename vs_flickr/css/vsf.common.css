@@ -171,6 +171,7 @@
 .vsf-logo-mobile a {
   color: #dc971f;
   font-weight: 700;
+  font-size: 90%;
 }
 .vsf-main {
   background-color: #2f3437;
@@ -180,6 +181,11 @@
 @media (min-width: 768px) {
   .vsf-main {
     padding-left: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .vsf-main {
+    padding-top: 65px;
   }
 }
 .vsf-main hr {
@@ -330,12 +336,20 @@
 }
 .vsf-mobile-bar {
   background: #3e494b;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: auto;
+  border-bottom: #2f3437 2px solid;
+  box-shadow: 0 2px 20px #2f3437;
 }
 .vsf-mobile-bar .vsf-cell {
   vertical-align: middle;
 }
 .vsf-mobile-bar .vsf-menu-button button {
-  background-color: #333;
+  background-color: #2b2b2b;
   border: 0;
   float: right;
   margin-right: 15px;
