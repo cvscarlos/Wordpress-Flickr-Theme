@@ -15,6 +15,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+	<div class="vsf-m-overlay"></div>
 	<div class="vsf-table">
 		<div class="vsf-trow visible-xs">
 			<div class="vsf-mobile-bar vsf-table">

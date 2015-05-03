@@ -10,6 +10,7 @@
 			run: function() {},
 			init: function() {
 				Common.socialMenuClass();
+				Common.mobileMenu();
 			},
 			ajaxStop: function() {},
 			windowOnload: function() {},
@@ -21,6 +22,11 @@
 						"title": $t.text(),
 						"target": "_blank"
 					});
+				});
+			},
+			mobileMenu: function() {
+				$(".vsf-m-overlay, .vsf-menu-button button").click(function() {
+					$(document.body).toggleClass('vsf-m-menu-visible');
 				});
 			}
 		};

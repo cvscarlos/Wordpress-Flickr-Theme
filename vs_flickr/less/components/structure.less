@@ -12,3 +12,27 @@
 	height: 100%;
 	vertical-align: top;
 }
+
+body{
+	&.vsf-m-menu-visible{
+		@media (max-width: @screen-xs-max) {
+			overflow: hidden;
+
+			.vsf-m-overlay{
+				background: @black;
+				.opacity(0.5);
+				position: fixed;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				top: 0;
+				display: block;
+				z-index: @m-side-menu-z-index - 10;
+			}
+		}
+	}
+	
+	.vsf-m-overlay{
+		display: none;
+	}
+}

@@ -1,12 +1,19 @@
 .vsf-side-menu{
 	@side-menu-width: 260px;
-	
+
 	color: contrast(@side-menu-bg, @color-darken, @color-lighten);
 
 	@media (max-width: @screen-xs-max) {
-		display: none;
+		display: block;
+		position: fixed;
+		top: 0;
+		z-index: @m-side-menu-z-index;
+		overflow: auto;
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
-	
+
+	&,
 	*{
 		.transition();
 	}
@@ -16,11 +23,20 @@
 		bottom: 0;
 		box-shadow: 1px 0 4px -4px @color-darken;
 	}
-	
+
 	&,
 	&-bg{
 		width: @side-menu-width;
 		background-color: @side-menu-bg;
+
+		@media (max-width: @screen-xs-max) {
+			width: @m-side-menu-width;
+			left: -(@m-side-menu-width + 10);
+
+			body.vsf-m-menu-visible &{
+				left: 0;
+			}
+		}
 	}
 
 	.vsf-side-menu-wrapper ul{

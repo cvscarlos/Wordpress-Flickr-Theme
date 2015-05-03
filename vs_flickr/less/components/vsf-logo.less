@@ -5,6 +5,10 @@
 	display: table;
 	.size(100%, 220px);
 
+	@media (max-width: @screen-xs-max) {
+		height: 100px;
+	}
+
 	a{
 		text-decoration: none;
 		display: table-cell;
@@ -17,11 +21,12 @@
 
 .vsf-logo-mobile{
 	margin: 0;
-	padding: 8px;
 
 	a{
+		padding: 8px;
 		color: @color-3-500;
 		font-weight: @font-bold;
-		font-size: 90%;
+		font-size: 80%;
+		display: block;
 	}
 }
