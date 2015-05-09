@@ -26,6 +26,25 @@
 				transform: scale(1.07);
 			}
 		}
+
+		.gallery-title(){
+			.vsf-gallery-title{
+				&,
+				span{
+					top: auto;
+					background: fade(@color-darken, 70%);
+					.opacity(1);
+					font-size: @font-size-sm;
+				}
+			}
+		}
+		@media (max-width: @screen-xs-max){
+			.gallery-title();
+		}
+		body.vsf-mobile,
+		body.vsf-tablet{
+			.gallery-title();
+		}
 	}
 
 	.vsf-gallery-cover-wrapper{

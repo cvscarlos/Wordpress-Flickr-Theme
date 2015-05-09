@@ -1,6 +1,7 @@
 <?php
 // Adicionando classe de cache
 include_once get_template_directory() . "/helpers/UrlCache.class.php";
+include_once get_template_directory() . "/helpers/Mobile_Detect.php";
 
 
 /*
@@ -145,6 +146,17 @@ if(isset($_GET["_r"]) && $_GET["_r"] == 1)
 	vs_flickr_redirect_2();
 
 
+// Detecção de dispositivo mobile
+function set_mobile_body_class( $classes ) {
+	$detect = new Mobile_Detect;
+	if ($detect->isMobile())
+		$classes[] = 'vsf-mobile';
+	elseif($detect->isTablet())
+		$classes[] = 'vsf-tablet';
+	return $classes;
+}
+add_filter('body_class', 'set_mobile_body_class');
+
 /*
 ESTILOS
 */
@@ -156,5 +168,6 @@ function blog_scripts() {
 
 	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js", array('jquery'));
 	wp_enqueue_script("vsf-base", get_template_directory_uri() . "/js/vsf.functions.base.js", array('jquery'));
+	wp_enqueue_script("jquery-mobile", "//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js", array('jquery'));
 }
 add_action("wp_enqueue_scripts", "blog_scripts");

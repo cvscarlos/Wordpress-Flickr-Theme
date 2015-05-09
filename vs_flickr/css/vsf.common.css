@@ -290,6 +290,26 @@ body .vsf-m-overlay {
 .vsf-photo-galleries li:hover .vsf-gallery-cover {
   transform: scale(1.07);
 }
+@media (max-width: 767px) {
+  .vsf-photo-galleries li .vsf-gallery-title,
+  .vsf-photo-galleries li .vsf-gallery-title span {
+    top: auto;
+    background: rgba(15, 14, 14, 0.7);
+    opacity: 1;
+    filter: alpha(opacity=100);
+    font-size: 14px;
+  }
+}
+.vsf-photo-galleries li body.vsf-mobile .vsf-gallery-title,
+.vsf-photo-galleries li body.vsf-tablet .vsf-gallery-title,
+.vsf-photo-galleries li body.vsf-mobile .vsf-gallery-title span,
+.vsf-photo-galleries li body.vsf-tablet .vsf-gallery-title span {
+  top: auto;
+  background: rgba(15, 14, 14, 0.7);
+  opacity: 1;
+  filter: alpha(opacity=100);
+  font-size: 14px;
+}
 .vsf-photo-galleries .vsf-gallery-cover-wrapper {
   margin: 6px;
   overflow: hidden;

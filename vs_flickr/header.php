@@ -16,7 +16,7 @@
 
 <body <?php body_class(); ?>>
 	<div class="vsf-m-overlay"></div>
-	<div class="vsf-table">
+	<div class="vsf-table" data-role="page">
 		<div class="vsf-trow visible-xs">
 			<div class="vsf-mobile-bar vsf-table">
 				<h1 class="vsf-logo-mobile vsf-cell"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
