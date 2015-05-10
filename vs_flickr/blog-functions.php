@@ -118,7 +118,7 @@ function vs_flickr_photo_redirect(){
 	vs_flickr_post_query_manage(true, $photoInfo, $photoInfo->photo->id, vs_flickr_post_query(true));
 }
 // Redirecionando quando esta em "_r"
-function vs_flickr_redirect(){
+/*function vs_flickr_redirect(){
 	$site_path = parse_url(get_site_url(), PHP_URL_PATH);
 
 	if(!(!is_null($site_path) && $site_path != "/"))
@@ -132,7 +132,7 @@ function vs_flickr_redirect(){
 		elseif(isset($_GET["f_p"]))
 			vs_flickr_photo_redirect();
 	}
-}
+}*/
 function vs_flickr_redirect_2(){
 	if(isset($_GET["f_ps"]))
 		vs_flickr_album_redirect();
@@ -168,6 +168,5 @@ function blog_scripts() {
 
 	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js", array('jquery'));
 	wp_enqueue_script("vsf-base", get_template_directory_uri() . "/js/vsf.functions.base.js", array('jquery'));
-	wp_enqueue_script("jquery-mobile", "//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js", array('jquery'));
 }
 add_action("wp_enqueue_scripts", "blog_scripts");
