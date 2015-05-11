@@ -168,5 +168,6 @@ function blog_scripts() {
 
 	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js", array('jquery'));
 	wp_enqueue_script("vsf-base", get_template_directory_uri() . "/js/vsf.functions.base.js", array('jquery'));
+	wp_enqueue_script("jquery-mobile-custom", get_template_directory_uri() . "/js/jquery.mobile.custom.min.js", array('jquery'));
 }
 add_action("wp_enqueue_scripts", "blog_scripts");
