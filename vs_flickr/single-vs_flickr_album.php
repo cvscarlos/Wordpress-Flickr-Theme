@@ -14,12 +14,14 @@ foreach ($albumJson->photoset->photo as $v) {
 
 get_header();
 ?>
-<h2><?php echo $albumInfo->photoset->title->_content;?></h2>
+<div class="vsf-album-wrapper">
+	<h2><?php echo $albumInfo->photoset->title->_content;?></h2>
 
-<p><?php echo $albumInfo->photoset->description->_content;?></p>
+	<p><?php echo $albumInfo->photoset->description->_content;?></p>
 
-<ul>
-	<?php echo $album; ?>
-</ul>
+	<ul>
+		<?php echo $album; ?>
+	</ul>
+</div>
 
 <?php get_footer(); ?>
