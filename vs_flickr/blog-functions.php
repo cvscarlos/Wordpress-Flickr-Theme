@@ -18,9 +18,16 @@ function get_flickr_album_info($ps_id) {
 	$url = "https://api.flickr.com/services/rest/?method=flickr.photosets.getInfo&api_key=fc5b65c11b4095f23c57019fd394c95f&photoset_id=" . $ps_id . "&format=json&nojsoncallback=1";
 	$json = json_decode(UrlCache::getData($url, 60, get_template_directory() . "/cache"));
 	return $json;
-}// Função para obter os detalhes da foto
+}
+// Função para obter os detalhes da foto
 function get_flickr_photo_info($p_id) {
 	$url = "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=fc5b65c11b4095f23c57019fd394c95f&photo_id=" . $p_id . "&format=json&nojsoncallback=1";
+	$json = json_decode(UrlCache::getData($url, 60, get_template_directory() . "/cache"));
+	return $json;
+}
+// Função para obter os detalhes da foto
+function get_flickr_photo_sizes($p_id) {
+	$url = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=fc5b65c11b4095f23c57019fd394c95f&photo_id=" . $p_id . "&format=json&nojsoncallback=1";
 	$json = json_decode(UrlCache::getData($url, 60, get_template_directory() . "/cache"));
 	return $json;
 }
@@ -163,12 +170,17 @@ ESTILOS
 function blog_scripts() {
 	wp_enqueue_style("bootstrap", get_template_directory_uri() . "/css/vsf.bootstrap.css");
 	wp_enqueue_style("vsf-common", get_template_directory_uri() . "/css/vsf.common.css");
+	wp_enqueue_style("photoswipe", get_template_directory_uri() . "/plugins/photoswipe/photoswipe.css");
+	wp_enqueue_style("photoswipe-skin", get_template_directory_uri() . "/plugins/photoswipe/default-skin/default-skin.css");
 	wp_enqueue_style("open-sans", "//fonts.googleapis.com/css?family=Open+Sans:400,700");
 	wp_enqueue_style("font-awesome", "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 
 	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js", array('jquery'));
 	wp_enqueue_script("vsf-base", get_template_directory_uri() . "/js/vsf.functions.base.js", array('jquery'));
 	wp_enqueue_script("jquery-mobile-custom", get_template_directory_uri() . "/js/jquery.mobile.custom.min.js", array('jquery'));
-	wp_enqueue_script("jquery-collage-plus", get_template_directory_uri() . "/js/jquery.collagePlus.min.js", array('jquery'));
+	wp_enqueue_script("jquery-mason", get_template_directory_uri() . "/js/mason.min.js", array('jquery'));
+	wp_enqueue_script("photoswipe", get_template_directory_uri() . "/plugins/photoswipe/photoswipe.min.js", array('jquery'));
+	wp_enqueue_script("photoswipe-ui", get_template_directory_uri() . "/plugins/photoswipe/photoswipe-ui-default.min.js", array('jquery'));
+	wp_enqueue_script("jquery-collagePlus", "//cdn.rawgit.com/ed-lea/jquery-collagePlus/master/jquery.collagePlus.min.js", array('jquery'));
 }
 add_action("wp_enqueue_scripts", "blog_scripts");

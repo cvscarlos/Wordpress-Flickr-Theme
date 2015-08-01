@@ -423,11 +423,20 @@ body .vsf-m-overlay {
   font-size: 26px;
   border-radius: 4px;
 }
-.vsf-album-wrapper ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.vsf-album-wrapper {
+  padding-right: 20px;
 }
-.vsf-album-wrapper ul li {
-  float: left;
+@media (max-width: 767px) {
+  .vsf-album-wrapper {
+    padding-left: 20px;
+  }
+}
+.vsf-album-wrapper .vsf-gallery {
+  margin: 0 auto;
+}
+.vsf-album-wrapper .vsf-gallery img {
+  border: 5px solid #fcfcfc;
+}
+.vsf-album-wrapper .vsf-gallery figcaption {
+  display: none;
 }

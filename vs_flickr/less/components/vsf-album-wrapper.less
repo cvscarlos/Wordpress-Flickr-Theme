@@ -1,11 +1,19 @@
 .vsf-album-wrapper{
-	ul{
-		list-style: none;
-		margin: 0;
-		padding: 0;
+	padding-right: 20px;
 
-		li{
-			float: left;
+	@media (max-width: @screen-xs-max) {
+		padding-left: 20px;
+	}
+
+	.vsf-gallery{
+		margin: 0 auto;
+
+		img{
+			border: 5px solid @white;
+		}
+
+		figcaption{
+			display: none;
 		}
 	}
 }

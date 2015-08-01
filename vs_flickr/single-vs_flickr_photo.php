@@ -8,10 +8,8 @@ get_header();
 
 <p><?php echo $photo->photo->description->_content;?></p>
 
-<ul>
-	<li>
-		<?php echo "<img src='https://farm{$photo->photo->farm}.staticflickr.com/{$photo->photo->server}/{$photo->photo->id}_{$photo->photo->secret}_m.jpg' alt='{$photo->photo->title->_content}' />"; ?>
-	</a>
-</ul>
+<p>
+	<?php echo "<img src='https://farm{$photo->photo->farm}.staticflickr.com/{$photo->photo->server}/{$photo->photo->id}_{$photo->photo->secret}_b.jpg' alt='{$photo->photo->title->_content}' class='center-block img-responsive' />"; ?>
+</p>
 
 <?php get_footer(); ?>
