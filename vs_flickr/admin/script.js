@@ -11,6 +11,8 @@
 			inFrame.setHeightWatching();
 			inFrame.saveForm();
 			inFrame.loadFlickrInfo();
+			inFrame.clearCache();
+			inFrame.saveGeneralConfig();
 		},
 		setHeight: function() {
 			if(typeof parent.vsFlickrFrameResize === "function")
@@ -93,6 +95,58 @@
 					},
 					complete: function() {
 						$(".vsFlickrLoading").hide();
+					}
+				});
+			});
+		},
+		saveGeneralConfig: function(){
+			$(".vs-flickr-general-config").submit(function(e) {
+				e.preventDefault();
+				var $form = $(this);
+
+				var button = $form.find('button[type="submit"]');
+				var icon = button.find("i").removeClass('fa-floppy-o').addClass('fa-spinner fa-spin');
+				button.attr('disabled', 'disabled');
+				
+				$.ajax({
+					url: location.href,
+					data: $form.serialize(),
+					dataType: "html",
+					type: "POST",
+					success: function(data){
+						alert('Data saved successfully! :D');
+					},
+					error: function() {
+						alert("Error while trying to save your information in the database.");
+					},
+					complete: function() {
+						icon.addClass('fa-floppy-o').removeClass('fa-spinner fa-spin');
+						button.removeAttr('disabled');
+					}
+				});
+			});
+		},
+		clearCache: function(){
+			$(".vs-flickr-clear-cache").click(function(e) {
+				e.preventDefault();
+				var $t = $(this);
+				var icon = $t.find("i").removeClass('fa-refresh').addClass('fa-spinner fa-spin');
+				$t.attr('disabled', 'disabled');
+
+				$.ajax({
+					url: location.href,
+					data: {clearCache: true},
+					dataType: "html",
+					type: "POST",
+					success: function(data){
+						alert('Cache clean! :D');
+					},
+					error: function() {
+						alert("Error while trying to clean the cache. Check the directory is writable.");
+					},
+					complete: function() {
+						icon.addClass('fa-refresh').removeClass('fa-spinner fa-spin');
+						$t.removeAttr('disabled');
 					}
 				});
 			});

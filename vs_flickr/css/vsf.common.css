@@ -423,6 +423,17 @@ body .vsf-m-overlay {
   font-size: 26px;
   border-radius: 4px;
 }
+.vsf-comments-wrapper {
+  padding-right: 40px;
+  padding-left: 20px;
+  margin-top: 30px;
+  margin-botton: 20px;
+}
+@media (max-width: 767px) {
+  .vsf-comments-wrapper {
+    padding-left: 40px;
+  }
+}
 .vsf-album-wrapper {
   padding-right: 20px;
 }

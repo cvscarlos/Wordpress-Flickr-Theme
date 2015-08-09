@@ -10,3 +10,6 @@ body #wpcontent{padding: 0; margin: 0; }
 body #wpbody-content{padding: 0;}
 
 #vsFlickrFrame{z-index:199999;}
+
+
+hr {width: 100%; color: #AAAAAA; height: 1px; background-color:#AAAAAA; }

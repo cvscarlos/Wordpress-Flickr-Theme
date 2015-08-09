@@ -31,6 +31,8 @@ get_header();
 	</div>
 </div>
 
+<?php comments_template(); ?>
+
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 	<!-- Background of PhotoSwipe.

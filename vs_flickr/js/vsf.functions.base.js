@@ -44,9 +44,9 @@
 				});
 			},
 			swipeMenu: function() {
-				$(".vsf-side-menu").on('swipeleft', function(evt, touch) {
-					$(document.body).removeClass('vsf-m-menu-visible');
-				});
+				// $(".vsf-side-menu").on('swipeleft', function(evt, touch) {
+				// 	$(document.body).removeClass('vsf-m-menu-visible');
+				// });
 
 				$(document.body).on('swiperight', function(evt, touch) {
 					$(document.body).addClass('vsf-m-menu-visible');
