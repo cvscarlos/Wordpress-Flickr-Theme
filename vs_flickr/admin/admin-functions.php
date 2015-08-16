@@ -107,8 +107,11 @@ function show_required_plugins_messages() {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 	// Download the Disqus comment system
-	if(!is_plugin_active( 'disqus-comment-system/disqus.php' ))
+	if(!is_plugin_active('disqus-comment-system/disqus.php'))
 		$plugin_messages[] = 'This theme requires you to install the Disqus Comment System plugin, download it <a href="http://wordpress.org/extend/plugins/disqus-comment-system/">here</a> or <a href="' . admin_url() . 'plugin-install.php?tab=search&s=Disqus+Comment+System">here</a>.';
+	// Download the Disqus comment system
+	if(!is_plugin_active('contact-form-7/wp-contact-form-7.php'))
+		$plugin_messages[] = 'This theme requires you to install the Contact Form 7 plugin, download it <a href="https://wordpress.org/plugins/contact-form-7/">here</a> or <a href="' . admin_url() . 'plugin-install.php?tab=search&s=Contact+Form+7">here</a>.';
 
 	if(count($plugin_messages) > 0) {
 		echo '<div id="message" class="error">';

@@ -90,7 +90,7 @@
 			photoGrid: function() {
 				function collage() {
 					jQuery('.vsf-gallery').collagePlus({
-						allowPartialLastRow: false,
+						allowPartialLastRow: true,
 						targetHeight : 310
 					});
 				};
