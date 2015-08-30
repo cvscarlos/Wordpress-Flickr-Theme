@@ -1,4 +1,4 @@
-/vs_flickr/tmp/*
-!/vs_flickr/tmp/.gitkeep
-/vs_flickr/cache
-!/vs_flickr/cache/.gitkeep
+/tmp/*
+!/tmp/.gitkeep
+/cache
+!/cache/.gitkeep
