@@ -43,3 +43,7 @@ function vs_flickr_side_menu() {
 add_action("init", "custom_post_flickr_album");
 add_action("init", "custom_post_flickr_photo");
 add_action('init', 'vs_flickr_side_menu');
+
+// Adicionando suporte ao tema
+add_theme_support("post-thumbnails");
+// set_post_thumbnail_size( 180, 180, true );

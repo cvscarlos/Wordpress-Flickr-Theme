@@ -19,7 +19,11 @@
 	<div class="vsf-table">
 		<div class="vsf-trow visible-xs">
 			<div class="vsf-mobile-bar vsf-table">
-				<h1 class="vsf-logo-mobile vsf-cell"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+				<?php if(is_home()):?>
+					<h1 class="vsf-logo-mobile vsf-cell"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+				<?php else:?>
+					<h2 class="vsf-logo-mobile vsf-cell"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h2>
+				<?php endif;?>
 				<div class="vsf-menu-button vsf-cell"><button><i class="fa fa-bars"></i></button></div>
 			</div>
 		</div>
@@ -29,7 +33,11 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-xs-24">
-							<h1 class="vsf-logo"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+							<?php if(is_home()):?>
+								<h1 class="vsf-logo"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+							<?php else:?>
+								<h2 class="vsf-logo"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h2>
+							<?php endif;?>
 							<div class="vsf-side-menu-wrapper">
 								<?php wp_nav_menu($vsf_tpl["menu_args"]); ?>
 							</div>

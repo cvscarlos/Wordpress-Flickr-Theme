@@ -168,7 +168,7 @@ add_filter('body_class', 'set_mobile_body_class');
 // DISQUS
 function disqus_embed($disqus_shortname) {
 	global $post;
-	wp_enqueue_script('disqus_embed','http://'.$disqus_shortname.'.disqus.com/embed.js');
+	wp_enqueue_script('disqus_embed','//'.$disqus_shortname.'.disqus.com/embed.js');
 	echo '<div id="disqus_thread"></div>
 	<script type="text/javascript">
 		var disqus_shortname = "'.$disqus_shortname.'";
@@ -188,6 +188,7 @@ function blog_scripts() {
 	wp_enqueue_style("photoswipe-skin", get_template_directory_uri() . "/plugins/photoswipe/default-skin/default-skin.css");
 	wp_enqueue_style("open-sans", "//fonts.googleapis.com/css?family=Open+Sans:400,700");
 	wp_enqueue_style("font-awesome", "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+	wp_enqueue_style("font-awesome", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css");
 
 	wp_enqueue_script("bootstrap-cdn", "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js", array('jquery'));
 	wp_enqueue_script("vsf-base", get_template_directory_uri() . "/js/vsf.functions.base.js", array('jquery'));

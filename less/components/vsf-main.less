@@ -3,9 +3,12 @@
 	color: @color-lighten;
 	text-align: center;
 
-	body.page-template-default &{
+	body.page-template-default &,
+	body.single-post &,
+	body.category &{
 		background: @color-lighten;
 		color: @color-darken;
+		text-align: left;
 	}
 
 	@media (min-width: @screen-sm-min) {
@@ -27,7 +30,6 @@
 
 		&:before{
 			@padding: 8px;
-
 			.font-ico("\f04d");
 			.absolute(50%, -50%);
 			font-size: @font-size-xs;

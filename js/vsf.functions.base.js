@@ -14,8 +14,7 @@
 
 	try {
 		var Common = {
-			run: function() {
-			},
+			run: function() {},
 			init: function() {
 				Common.setTouchClass();
 				Common.swipeMenu();
@@ -104,6 +103,33 @@
 				});
 			}
 		};
+
+		var Page = {
+			run: function() {},
+			init: function() {
+				Page.contactForm7SetClass();
+			},
+			ajaxStop: function() {},
+			windowOnload: function() {},
+			contactForm7SetClass: function() {
+				var formItem = $(".wpcf7-form").children("p").addClass("form-group row");
+				formItem.find("input:not([type=submit]), textarea, select").addClass("form-control");
+				formItem.find("input[type=submit]").addClass("btn btn-primary");
+				formItem.children("span").addClass("col-md-18");
+			}
+		};
+
+		var Post = {
+			run: function() {},
+			init: function() {
+				Post.imgResponsive();
+			},
+			ajaxStop: function() {},
+			windowOnload: function() {},
+			imgResponsive: function() {
+				$(".vsf-post-wrapper img").addClass('img-responsive');
+			}
+		};
 	}
 	catch (e) {(typeof console !== "undefined" && typeof console.error === "function" && console.error("Houve um erro nos objetos. Detalhes: " + e.message)); }
 
@@ -115,19 +141,25 @@
 				Common.windowOnload();
 				if (body.is(".page-template-template-gallery")) Gallery.windowOnload();
 				if (body.is(".single-vs_flickr_album")) Album.windowOnload();
+				if (body.is(".page-template-default")) Page.windowOnload();
+				if (body.is("single-post")) Post.windowOnload();
 			};
 
 			ajaxStop = function() {
 				Common.ajaxStop();
 				if (body.is(".page-template-template-gallery")) Gallery.ajaxStop();
 				if (body.is(".single-vs_flickr_album")) Album.ajaxStop();
+				if (body.is(".page-template-default")) Page.ajaxStop();
+				if (body.is(".single-post")) Post.ajaxStop();
 			};
 
 			$(function() {
-				body = $("body");
+				body = $(document.body);
 				Common.init();
 				if (body.is(".page-template-template-gallery")) Gallery.init();
 				if (body.is(".single-vs_flickr_album")) Album.init();
+				if (body.is(".page-template-default")) Page.init();
+				if (body.is("single-post")) Post.init();
 				$(document).ajaxStop(ajaxStop);
 				$(window).load(windowLoad);
 				body.addClass('jsFullLoaded');
