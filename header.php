@@ -44,6 +44,11 @@
 							<div class="vsf-social-menu">
 								<?php wp_nav_menu($vsf_tpl["social_menu_args"]); ?>
 							</div>
+							<?php if(get_option("vs_flickr_copyright")): ?>
+								<div class="vsf-copyright">
+									<p><?php echo get_option("vs_flickr_copyright"); ?></p>
+								</div>
+							<?php endif;?>
 						</div>
 					</div>
 				</div>

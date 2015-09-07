@@ -47,3 +47,4 @@ add_action('init', 'vs_flickr_side_menu');
 // Adicionando suporte ao tema
 add_theme_support("post-thumbnails");
 // set_post_thumbnail_size( 180, 180, true );
+// add_theme_support("site-logo");

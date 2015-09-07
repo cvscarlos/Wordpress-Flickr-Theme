@@ -107,6 +107,7 @@
 		var Page = {
 			run: function() {},
 			init: function() {
+				// Post.imgResponsive();
 				Page.contactForm7SetClass();
 			},
 			ajaxStop: function() {},
@@ -122,12 +123,24 @@
 		var Post = {
 			run: function() {},
 			init: function() {
-				Post.imgResponsive();
+				// Post.imgResponsive();
 			},
 			ajaxStop: function() {},
 			windowOnload: function() {},
-			imgResponsive: function() {
-				$(".vsf-post-wrapper img").addClass('img-responsive');
+			/*imgResponsive: function() {
+				$(".vsf-post-wrapper img.size-full").addClass('img-responsive');
+			}*/
+		};
+
+		var Category = {
+			run: function() {},
+			init: function() {
+				Category.paginate();
+			},
+			ajaxStop: function() {},
+			windowOnload: function() {},
+			paginate: function() {
+				$(".nav-links").find("a, span").wrapAll('<ul class="pagination"></ul>').wrap('<li></li>').filter(".current").parent().addClass('active');
 			}
 		};
 	}
@@ -142,7 +155,8 @@
 				if (body.is(".page-template-template-gallery")) Gallery.windowOnload();
 				if (body.is(".single-vs_flickr_album")) Album.windowOnload();
 				if (body.is(".page-template-default")) Page.windowOnload();
-				if (body.is("single-post")) Post.windowOnload();
+				if (body.is(".single-post")) Post.windowOnload();
+				if (body.is(".category")) Category.windowOnload();
 			};
 
 			ajaxStop = function() {
@@ -150,7 +164,8 @@
 				if (body.is(".page-template-template-gallery")) Gallery.ajaxStop();
 				if (body.is(".single-vs_flickr_album")) Album.ajaxStop();
 				if (body.is(".page-template-default")) Page.ajaxStop();
-				if (body.is(".single-post")) Post.ajaxStop();
+				if (body.is("..single-post")) Post.ajaxStop();
+				if (body.is("..category")) Category.ajaxStop();
 			};
 
 			$(function() {
@@ -159,7 +174,8 @@
 				if (body.is(".page-template-template-gallery")) Gallery.init();
 				if (body.is(".single-vs_flickr_album")) Album.init();
 				if (body.is(".page-template-default")) Page.init();
-				if (body.is("single-post")) Post.init();
+				if (body.is(".single-post")) Post.init();
+				if (body.is(".category")) Category.init();
 				$(document).ajaxStop(ajaxStop);
 				$(window).load(windowLoad);
 				body.addClass('jsFullLoaded');

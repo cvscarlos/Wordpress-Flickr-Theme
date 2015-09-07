@@ -33,12 +33,15 @@ function theme_config_page_frame() {
 		return theme_clear_cache();
 	elseif(count($_POST) && isset($_POST["disqusid"]))
 		return theme_config_disqus_id();
+	elseif(count($_POST) && isset($_POST["copyright"]))
+		return theme_config_copyright();
 
 	$tpl = new raintpl();
 	$tpl->assign(array(
 		"templateUri" => get_template_directory_uri(),
 		"flickrUserId" => get_option("vs_flickr_user_id")? get_option("vs_flickr_user_id"): "",
-		"disqusId" => get_option("vs_flickr_disqus_id")? get_option("vs_flickr_disqus_id"): ""
+		"disqusId" => get_option("vs_flickr_disqus_id")? get_option("vs_flickr_disqus_id"): "",
+		"copyright" => get_option("vs_flickr_copyright")? get_option("vs_flickr_copyright"): ""
 		));
 	$tpl->draw("configFrame");
 }
@@ -60,6 +63,17 @@ function theme_config_disqus_id() {
 			add_option("vs_flickr_disqus_id", $_POST["disqusid"]);
 		else
 			update_option("vs_flickr_disqus_id", $_POST["disqusid"]);
+	} catch (Exception $e) {
+		echo "Exceção pega: ",  $e->getMessage();
+	}
+}
+// POST para inserir copyright
+function theme_config_copyright() {
+	try {
+		if(get_option("vs_flickr_copyright") === false)
+			add_option("vs_flickr_copyright", $_POST["copyright"]);
+		else
+			update_option("vs_flickr_copyright", $_POST["copyright"]);
 	} catch (Exception $e) {
 		echo "Exceção pega: ",  $e->getMessage();
 	}
