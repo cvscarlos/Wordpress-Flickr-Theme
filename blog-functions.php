@@ -99,18 +99,18 @@ function vs_flickr_post_query_manage($isPhoto, $json, $id, $query, $parent = 0) 
 	if(!$query->have_posts() && $json->stat == "ok"){
 		$post = vs_flickr_post($isPhoto, $title, $desc, $time, 0, $parent);
 		add_post_meta($post, ($isPhoto? "vsFlickrPhotoId" : "vsFlickrAlbumId"), $id, true) || update_post_meta($post, ($isPhoto? "vsFlickrPhotoId" : "vsFlickrAlbumId"), $id);
-		wp_redirect(get_permalink($post), 301);
+		wp_redirect(get_permalink($post), 307);
 		exit;
 	}
 	// Caso o post exista, esteja como rascunho e o Flickr tenha retornado sucesso
 	elseif($query->have_posts() && $query->post->post_status == "draft" && $json->stat == "ok"){
 		vs_flickr_post($isPhoto, $title, $desc, $time, $query->post->ID, $parent);
-		wp_redirect(get_permalink($query->post->ID), 301);
+		wp_redirect(get_permalink($query->post->ID), 307);
 		exit;
 	}
 	// Caso o post já exista
 	elseif ($query->have_posts()) {
-		wp_redirect(get_permalink($query->post->ID), 301);
+		wp_redirect(get_permalink($query->post->ID), 307);
 		exit;
 	}
 }
