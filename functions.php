@@ -30,7 +30,7 @@ function custom_post_flickr_photo() {
 		"hierarchical" => false,
 		"rewrite" => array("slug" => "photo")
 	);
-	register_post_type("vs_flickr_photo", $args);
+	// register_post_type("vs_flickr_photo", $args);
 }
 
 // Menu Lateral
@@ -48,3 +48,10 @@ add_action('init', 'vs_flickr_side_menu');
 add_theme_support("post-thumbnails");
 // set_post_thumbnail_size( 180, 180, true );
 // add_theme_support("site-logo");
+
+// Create a custom image size for Site Logo.
+add_image_size( 'vs-flickr-logo', 260, 220 );
+// Declare theme support for Site Logo.
+add_theme_support( 'site-logo', array(
+    'size' => 'vs-flickr-logo',
+));

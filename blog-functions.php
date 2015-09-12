@@ -7,13 +7,13 @@ include_once get_template_directory() . "/helpers/Mobile_Detect.php";
 /*
 MÉTODOS PARA O FLICKR
 */
-// Função para obter a galeira do Flickr do usuário
+// Obtém a lista de álbuns do usuário no Flickr
 function get_flickr_albuns() {
 	$url = "https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=fc5b65c11b4095f23c57019fd394c95f&user_id=" . get_option("vs_flickr_user_id") . "&page=1&per_page=500&format=json&nojsoncallback=1";
 	$json = json_decode(UrlCache::getData($url, 24 * 60, get_template_directory() . "/cache"));
 	return $json;
 }
-// Função para obter os detalhes da galeira
+// Obtém título, descrição, capa e outras info do álbum
 function get_flickr_album_info($ps_id) {
 	$url = "https://api.flickr.com/services/rest/?method=flickr.photosets.getInfo&api_key=fc5b65c11b4095f23c57019fd394c95f&photoset_id=" . $ps_id . "&format=json&nojsoncallback=1";
 	$json = json_decode(UrlCache::getData($url, 24 * 60, get_template_directory() . "/cache"));
@@ -25,13 +25,13 @@ function get_flickr_photo_info($p_id) {
 	$json = json_decode(UrlCache::getData($url, 24 * 60, get_template_directory() . "/cache"));
 	return $json;
 }
-// Função para obter os detalhes da foto
+// Obtém as dimensões de uma foto
 function get_flickr_photo_sizes($p_id) {
 	$url = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=fc5b65c11b4095f23c57019fd394c95f&photo_id=" . $p_id . "&format=json&nojsoncallback=1";
-	$json = json_decode(UrlCache::getData($url, 24 * 60, get_template_directory() . "/cache"));
+	$json = json_decode(UrlCache::getData($url, 30 * 24 * 60, get_template_directory() . "/cache"));
 	return $json;
 }
-// Função para obter os detalhes da galeira
+// Obtém a lista de fotos de um álbum
 function get_flickr_album($ps_id) {
 	$url = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=fc5b65c11b4095f23c57019fd394c95f&photoset_id=" . $ps_id . "&per_page=500&format=json&nojsoncallback=1";
 	$json = json_decode(UrlCache::getData($url, 24 * 60, get_template_directory() . "/cache"));

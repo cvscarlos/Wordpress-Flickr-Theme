@@ -16,8 +16,8 @@
 
 <body <?php body_class(); ?>>
 	<div class="vsf-m-overlay"></div>
-	<div class="vsf-table">
-		<div class="vsf-trow visible-xs">
+	<div class="vsf-full-wrapper">
+		<div class="visible-xs">
 			<div class="vsf-mobile-bar vsf-table">
 				<?php if(is_front_page()):?>
 					<h1 class="vsf-logo-mobile vsf-cell"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
@@ -27,16 +27,24 @@
 				<div class="vsf-menu-button vsf-cell"><button><i class="fa fa-bars"></i></button></div>
 			</div>
 		</div>
-		<div class="vsf-trow">
-			<div class="vsf-cell vsf-side-menu">
+		<div class="">
+			<div class="vsf-side-menu">
 				<div class="vsf-side-menu-bg"> </div>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-xs-24">
 							<?php if(is_front_page()):?>
-								<h1 class="vsf-logo"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+								<?php if (function_exists('jetpack_has_site_logo') && jetpack_has_site_logo()):?>
+									<h1 class="vsf-logo vsf-logo-img"><?php jetpack_the_site_logo();?></h1>
+								<?php else:?>
+									<h1 class="vsf-logo"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h1>
+								<?php endif;?>
 							<?php else:?>
-								<h2 class="vsf-logo h1"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h2>
+								<?php if (function_exists('jetpack_has_site_logo') && jetpack_has_site_logo()):?>
+									<h2 class="vsf-logo vsf-logo-img h1"><?php jetpack_the_site_logo();?></h2>
+								<?php else:?>
+									<h2 class="vsf-logo h1"><a href="<?php echo get_bloginfo("url");?>"><?php echo get_bloginfo("name");?></a></h2>
+								<?php endif;?>
 							<?php endif;?>
 							<div class="vsf-side-menu-wrapper">
 								<?php wp_nav_menu($vsf_tpl["menu_args"]); ?>
@@ -53,7 +61,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="vsf-cell vsf-main">
+			<div class="vsf-main">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-xs-24">

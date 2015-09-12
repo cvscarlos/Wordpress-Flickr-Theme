@@ -108,15 +108,22 @@
 			run: function() {},
 			init: function() {
 				// Post.imgResponsive();
-				Page.contactForm7SetClass();
+				// Page.contactForm7SetClass();
+				Page.jetpackContactFormSetClass();
 			},
 			ajaxStop: function() {},
 			windowOnload: function() {},
-			contactForm7SetClass: function() {
+			/*contactForm7SetClass: function() {
 				var formItem = $(".wpcf7-form").children("p").addClass("form-group row");
 				formItem.find("input:not([type=submit]), textarea, select").addClass("form-control");
 				formItem.find("input[type=submit]").addClass("btn btn-primary");
 				formItem.children("span").addClass("col-md-18");
+			},*/
+			jetpackContactFormSetClass: function() {
+				var form = $(".contact-form");
+				var formItem = form.children("div").addClass("form-group row");
+				formItem.find("input, textarea, select").addClass("form-control");
+				form.find(".contact-submit input").addClass("btn btn-primary");
 			}
 		};
 

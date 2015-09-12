@@ -22,7 +22,7 @@ get_header();
 ?>
 
 <div class="vsf-album-wrapper">
-	<h2><?php echo $albumInfo->photoset->title->_content;?></h2>
+	<h1><?php echo $albumInfo->photoset->title->_content;?></h1>
 
 	<p><?php echo $albumInfo->photoset->description->_content;?></p>
 

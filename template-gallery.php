@@ -17,7 +17,7 @@ $post = get_post();
 
 get_header();
 
-echo nl2br($post->post_content);
+echo wpautop($post->post_content);
 ?>
 
 <div class="vsf-photo-galleries clearfix">

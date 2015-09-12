@@ -1,10 +1,12 @@
 <?php
 // ícones: https://www.iconfinder.com/iconsets/fugue
 
+include_once get_template_directory() . "/helpers/TGM-Plugin-Activation/class-tgm-plugin-activation.php";
+
 include_once get_template_directory() . "/helpers/rain.tpl.class.php";
 raintpl::configure("tpl_dir", get_template_directory() . "/tpl/admin/");
 raintpl::configure("cache_dir", get_template_directory() . "/tmp/");
-raintpl::configure( "path_replace", false );
+raintpl::configure("path_replace", false);
 
 function setup_theme_admin_menus() {
 	add_menu_page("Flickr Theme Config", "Flickr Config", "manage_options", "vs_flickr_theme", "theme_settings_page", get_template_directory_uri() . "/admin/config16.png");
@@ -81,6 +83,7 @@ function theme_config_copyright() {
 // POST para limpar o cache
 function theme_clear_cache() {
 	try {
+		// Limpando o cache dos JSON (arquivos)
 		function clear($dir){
 			if ($handle = opendir($dir)) {
 				while (false !== ($file = readdir($handle))) {
@@ -96,9 +99,14 @@ function theme_clear_cache() {
 				closedir($handle);
 			}
 		};
-
 		clear(get_template_directory() . '/cache/');
 
+		// Limpando o banco de dados
+		$mycustomposts = get_pages( array( 'post_type' => 'vs_flickr_album', 'number' => 1000) );
+		foreach( $mycustomposts as $mypost ) {
+			wp_delete_post( $mypost->ID, true);
+			// Set to False if you want to send them to Trash.
+		}
 	} catch (Exception $e) {
 		echo "Exceção pega: ",  $e->getMessage();
 	}
@@ -115,29 +123,71 @@ function admin_styles() {
 }
 
 
-// Requisitando plugins para o tema
-function show_required_plugins_messages() {
-	$plugin_messages = array();
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+// Requisitando plugins exigidos pelo tema
+function required_plugins() {
+	/*
+	 * Array of plugin arrays. Required keys are name and slug.
+	 * If the source is NOT from the .org repo, then source is also required.
+	 */
+	$plugins = array(
+		array(
+			'name'      => 'Jetpack by WordPress.com',
+			'slug'      => 'jetpack',
+			'required'  => true
+		),
+		array(
+			'name'      => 'Disqus Comment System',
+			'slug'      => 'disqus-comment-system',
+			'required'  => false
+		)
+	);
 
-	// Download the Disqus comment system
-	if(!is_plugin_active('disqus-comment-system/disqus.php'))
-		$plugin_messages[] = 'This theme requires you to install the Disqus Comment System plugin, download it <a href="http://wordpress.org/extend/plugins/disqus-comment-system/">here</a> or <a href="' . admin_url() . 'plugin-install.php?tab=search&s=Disqus+Comment+System">here</a>.';
-	// Download the Disqus comment system
-	if(!is_plugin_active('contact-form-7/wp-contact-form-7.php'))
-		$plugin_messages[] = 'This theme requires you to install the Contact Form 7 plugin, download it <a href="https://wordpress.org/plugins/contact-form-7/">here</a> or <a href="' . admin_url() . 'plugin-install.php?tab=search&s=Contact+Form+7">here</a>.';
+	/*
+	 * Array of configuration settings. Amend each line as needed.
+	 *
+	 * TGMPA will start providing localized text strings soon. If you already have translations of our standard
+	 * strings available, please help us make TGMPA even better by giving us access to these translations or by
+	 * sending in a pull-request with .po file(s) with the translations.
+	 *
+	 * Only uncomment the strings in the config array if you want to customize the strings.
+	 */
+	$config = array(
+		'id'           => 'tgmpa',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+		'default_path' => '',                      // Default absolute path to bundled plugins.
+		'menu'         => 'tgmpa-install-plugins', // Menu slug.
+		'parent_slug'  => 'themes.php',            // Parent menu slug.
+		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+		'has_notices'  => true,                    // Show admin notices or not.
+		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+		'message'      => '',                      // Message to output right before the plugins table.
+	);
 
-	if(count($plugin_messages) > 0) {
+	tgmpa( $plugins, $config );
+}
+
+
+// Exigindo a ativação de módulo do Jetpak
+function show_required_jetpack_modules_messages() {
+	$messages = array();
+
+	if (class_exists('Jetpack') && !Jetpack::is_module_active("contact-form"))
+		$messages[] = 'This theme requires that you enable the "Contact Form" module in <a href="' . admin_url("admin.php?page=jetpack_modules") . '">Jetpack settings</a>.';
+	
+	if(count($messages)) {
 		echo '<div id="message" class="error">';
-		foreach($plugin_messages as $message)
+		foreach($messages as $message)
 			echo '<p><strong>'.$message.'</strong></p>';
 		echo '</div>';
 	}
 }
 
 
+
 // Adicionando ações ao WP
 add_action("admin_menu", "setup_theme_admin_menus");
 add_action("admin_enqueue_scripts", "admin_styles");
 // add_action("login_enqueue_scripts", "my_admin_theme_style");
-add_action('admin_notices', 'show_required_plugins_messages');
+add_action("admin_notices", "show_required_jetpack_modules_messages");
+add_action('tgmpa_register', 'required_plugins');
