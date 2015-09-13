@@ -1,4 +1,4 @@
 /tmp/*
 !/tmp/.gitkeep
-/cache
+/cache/*
 !/cache/.gitkeep
