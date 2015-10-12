@@ -139,12 +139,12 @@ function required_plugins() {
 			'name'      => 'Disqus Comment System',
 			'slug'      => 'disqus-comment-system',
 			'required'  => false
-		),
+		)/*,
 		array(
 			'name'      => 'Contact Form 7',
 			'slug'      => 'contact-form-7',
 			'required'  => false
-		)
+		)*/
 	);
 
 	/*
@@ -194,5 +194,5 @@ function show_required_jetpack_modules_messages() {
 add_action("admin_menu", "setup_theme_admin_menus");
 add_action("admin_enqueue_scripts", "admin_styles");
 // add_action("login_enqueue_scripts", "my_admin_theme_style");
-// add_action("admin_notices", "show_required_jetpack_modules_messages");
+add_action("admin_notices", "show_required_jetpack_modules_messages");
 add_action('tgmpa_register', 'required_plugins');
